@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Login | Entrar</title>
+{% endblock  %}
+
+{% block intro %}
+<section id="intro" class="clearfix">
+	<div class="container d-flex h-100">
+		<div class="row justify-content-center align-self-center">
+			<div class="col-md-6 intro-info order-md-first order-last">
+				<h2>Inicia sesión <br> o <span> <a href="{% url 'registro_usuario' %}">crear una cuenta</a></span></h2>
+				<div>
+					<form class="LOGREG-Form" action="" method='POST' autocomplete="off" style="padding: 25px;">
+						{% csrf_token %}
+
+						<p>Por favor ingresa tus datos correctamente</p>
+						<div class="ms_form">
+							Usuario: {{form.username}} <br>
+							Contraseña: {{form.password}} <br><br>
+
+						</div>
+						<div class="FormAcept">
+							<input class="btn-get-started scrollto" type="submit" name="Login" value="Iniciar sesión">
+						</div>
+					</form>
+
+
+				</div>
+			</div>
+
+			<div class="col-md-6 intro-img order-md-last order-first">
+				<img src="{% static 'rapi/img/intro-img.png' %}" alt="" class="img-fluid">
+			</div>
+		</div>
+
+	</div>
+</section><!-- #intro -->
+
+{% endblock %}
+
+{% block contenido%}
+
+
+{% endblock%}

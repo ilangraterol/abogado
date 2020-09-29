@@ -1,0 +1,366 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+
+
+{% block intro%}
+<section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col-md-6 intro-info order-md-first order-last">
+                <h2>Servicios de Cobta <span>con calidad y
+                        oportunidad!</span></h2>
+
+
+                <div>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="btn-get-started scrollto">Bienvenido: {{ user.username}}</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn-get-started scrollto">¡Te Llamamos!</a>
+                    <a>|</a>
+                    <a href="{% url 'contacto' %}" class="btn-get-started scrollto">Contáctanos</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6 intro-img order-md-last order-first">
+                <img src="{% static 'rapi/img/intro-img_contable.png' %}" alt="" class="img-fluid">
+            </div>
+        </div>
+
+    </div>
+</section><!-- #intro -->
+
+{% endblock %}
+
+
+
+{% block contenido %}
+
+
+<!-- Services Section
+============================-->
+<section id="services" class="section-bg">
+    <div class="container">
+
+        <h4 style="position: initial;font-size: 40px;font-weight: 600;letter-spacing: 1px;"
+            class="title text-center pb-md-3 mb-3">Servicios
+            <span style="color: #413e66;"> Contables</span></h4>
+        <!-- <header class="section-header">
+            <h3>Servicios de Contabilidad</h3>
+            <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.
+            </p>
+        </header> -->
+        <div class="row">
+            {% for servicio in contable %}
+            <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                <div class="box">
+                    <!-- <div class="icon" style="background: #fceef3;">
+                        <i class="ion-ios-analytics-outline" style="color: #ff689b;"></i>
+                    </div> -->
+                    {% if servicio.imagen %}
+                    <div class="redimencionar">
+                        <i><img src="{{servicio.imagen.url}}" alt=""></i>
+                    </div>
+                    {% else %}
+                    <div class="redimencionar">
+                        <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
+                    </div>
+                    {% endif %}
+                    <h4 class="title"><a href="">{{servicio.nombre}}</a></h4>
+                    <p class="description">{{servicio.descripcion}}</p><br>
+                    <div>
+
+                        <button type="button" class="btn btn-primary" href="{% url 'home' %}">Contáctanos</button>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<!-- <section class="wthree-row w3-about  py-5">
+    <div class="container py-md-6 mt-md-3">
+        <h4 style="position: initial;font-size: 40px;font-weight: 600;letter-spacing: 1px;"
+            class="title text-center pb-md-3 mb-3">Servicios de
+            <span style="color: #1bb1dc;"> Contabilidad</span></h4>
+        <div class="card-deck mt-md-5 pt-3">
+            <div class="card">
+                <img src="https://dmasesores.co/wp-content/themes/dmasesores_template/images/g1.jpg" class="img-fluid"
+                    alt="Card image cap">
+                <div style="text-align: justify;" class="card-body w3ls-card">
+                    <h5 class="card-title">Outsourcing y Co-Sourcing contable</h5>
+                    <p class="card-text mb-3 ">Es cuando los procesos de un negocio son llevados a cabo por un tercero o
+                        conjuntamente por personal interno y un consultor con conocimiento especializado en materia
+                        contable y
+                        tributaria.</p>
+                    <p class="card-text mb-3 ">Sus principales ventajas son:</p>
+
+                    <p>• Mayor disponibilidad de tiempo para realizar su actividad productiva.</p>
+
+                    <p>• Control y planificación que se reflejan en la reducción de riesgos tributarios y financieros.
+                    </p>
+
+                    <p>• Seguridad en la generación de informes y reportes financieros propios o a solicitud de
+                        terceros.</p>
+
+                    <p>• Profesionalización de los procesos en los temas financieros y contables.</p>
+
+                    <p>• Contar con la disposición y ayuda permanente de un profesional calificado.</p>
+
+                    <div class="cont-btn mt-3">
+                        <a style="background: #0a98c0;" class="btn text-uppercase" href="" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <i class="fas fa-phone"></i>&nbsp;&nbsp;¡Te llamamos!
+                        </a>
+                        <a class="btn active text-uppercase ml-2" href="contactanos">Contáctanos</a>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://dmasesores.co/wp-content/themes/dmasesores_template/images/g2.png" class="img-fluid"
+                    alt="Card image cap">
+                <div style="text-align: justify;" class="card-body w3ls-card">
+                    <h5 class="card-title">Contabilidad agropecuaria</h5>
+                    <p class="card-text mb-3 ">Consiste en el registro y la medición económica de los activos biológicos
+                        y productos agrícolas, los ingresos generados por la actividad y el asentamiento de los costos y
+                        gastos
+                        de producción, cumplimiento de obligaciones tributarias y acceso a beneficios e incentivos.</p>
+                    <p class="card-text mb-3 ">La contabilidad agropecuaria se caracteriza por considerar:</p>
+
+                    <p>• Los ciclos biológicos de los seres vivos: Nacimiento, desarrollo, producción
+                        y/o procreación y mortalidad.</p>
+
+                    <p>• El desarrollo depende principalmente de factores ambientales, oferta nutricional
+                        y aspectos genéticos</p>
+
+                    <p>• El manejo de los inventarios según el tipo de cultivo y/o el estado fisiológico
+                        de cada animal.</p>
+
+                    <p style="height: 56px;;"></p>
+
+
+                    <div class="cont-btn mt-3">
+                        <a style="background: #324C68;" class="btn text-uppercase" href="" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <i class="fas fa-phone"></i>&nbsp;&nbsp;¡Te llamamos!
+                        </a>
+                        <a class="btn active text-uppercase ml-2" href="contactanos">Contáctanos</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div class="card-deck mt-md-5 pt-3">
+            <div class="card">
+                <img src="https://dmasesores.co/wp-content/themes/dmasesores_template/images/g3.jpg" class="img-fluid"
+                    alt="Card image cap">
+                <div style="text-align: justify;" class="card-body w3ls-card">
+                    <h5 class="card-title">Gestión virtual de trámites tributarios</h5>
+                    <p class="card-text mb-3 ">Con el objetivo de apoyar todos sus procesos rentísticos a nivel nacional
+                        (DIAN),
+                        departamental y/o municipal.</p>
+                    <p class="card-text mb-3 ">Realizamos los siguientes trámites:</p>
+
+                    <p>• Inscripción/actualización del RUT.</p>
+
+                    <p>• Solicitud del certificado de residencia fiscal para personas naturales y jurídicas que perciben
+                        rentas desde el exterior.</p>
+
+                    <p>• Cumplimiento de obligaciones formales, declaraciones tributarias, reporte de información
+                        exógena y/o habilitación como facturador electrónico.</p>
+
+                    <p>• Atención y respuesta de los requerimientos realizados por las autoridades fiscales.</p>
+
+                    <p>• Solicitud de devolución y/o compensación de saldos a favor.</p>
+
+                    <p>• Acceso a beneficios e incentivos tributarios para el fomento de actividades económicas en
+                        Colombia.</p><br>
+
+                    <div style="margin-top: 0rem !important;" class="cont-btn mt-3">
+                        <a style="background: #324C68;" class="btn text-uppercase" href="" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <i class="fas fa-phone"></i>&nbsp;&nbsp;¡Te llamamos!
+                        </a>
+                        <a class="btn active text-uppercase ml-2" href="contactanos">Contáctanos</a>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://dmasesores.co/wp-content/themes/dmasesores_template/images/g2.jpg" class="img-fluid"
+                    alt="Card image cap">
+                <div style="text-align: justify;" class="card-body w3ls-card">
+                    <h5 class="card-title">Auditoría y revisoría fiscal</h5>
+                    <p class="card-text mb-3 ">La auditoría consiste en el proceso sistemático para examinar, obtener y
+                        evaluar objetivamente evidencias relacionadas con una actividad o procedimiento, permitiendo
+                        determinar
+                        el grado de correspondencia con los principios establecidos para éste durante un periodo
+                        determinado.</p>
+
+                    <p>•Contable y financiera.</p>
+
+                    <p>•Tributaria.</p>
+
+                    <p>•De procedimientos internos.</p><br>
+
+                    <p class="card-text mb-3 ">La revisoría fiscal es uno de los instrumentos a través de los cuales se
+                        ejerce la inspección y vigilancia de las
+                        sociedades mercantiles, en cuanto vela por el cumplimiento de las leyes, de los estatutos
+                        sociales y
+                        de las decisiones de los órganos de administración, y da fe pública al respecto.</p>
+
+                    <p style="height: 28px;;"></p>
+
+                    <div style="margin-top: 0rem !important;" class="cont-btn mt-3">
+                        <a style="background: #324C68;" class="btn text-uppercase" href="" data-toggle="modal"
+                            data-target="#exampleModal">
+                            <i class="fas fa-phone"></i>&nbsp;&nbsp;¡Te llamamos!
+                        </a>
+                        <a class="btn active text-uppercase ml-2" href="contactanos">Contáctanos</a>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</section> -->
+
+
+<!--==========================
+      Why Us Section
+    ============================-->
+<!-- <section id="why-us" class="wow fadeIn">
+    <div class="container-fluid">
+
+        <header class="section-header">
+            <h3>Servicios Legales</h3>
+            <p>Contamos con especialistas en diferentes áreas tanto jurídicas como contables.</p>
+        </header>
+
+        <div class="row">
+
+            <div class="col-lg-8">
+
+                <div class="why-us-content">
+                    <h4>Servicios jurídicos </h4>
+                    <p>Ofrecemos una atención personalizada e integral, brindando soluciones jurídicas. Prácticas,
+                        dinámicas y confiables. ¡Llámanos! Abogados Civiles. Servicios: Abogados Laborales, Sports &
+                        Entertainment, Extinción de dominio, Abogados Civiles, Abogados Inmobiliarios.</p>
+
+                    <div class="features wow bounceInUp clearfix">
+                        {% for servicio in juridico %}
+
+                        {% if servicio.imagen %}
+                        <div class="redimencionar">
+                            <i><img src="{{servicio.imagen.url}}" alt=""></i>
+                        </div>
+                        {% else %}
+                        <div class="redimencionar">
+                            <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
+                        </div>
+                        {% endif %}
+                        <a href="{% url 'service_detail' servicio.id %}">
+                            <h4>{{servicio.nombre}}</h4>
+                            <p>{{servicio.descripcion}}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="why-us-content">
+                    <h4>Servicios contables</h4>
+                    <p>Nuestro servicio Contable e Impuestos involucra el diseño de la organización contable con el fin
+                        de ajustar el mantenimiento de registros y presentación de informes a sus necesidades, mientras
+                        se esfuerza por aumentar la eficacia de la función contable en su negocio.</p>
+
+                    <div class="features wow bounceInUp clearfix">
+                        {% for servicio in contable %}
+                        {% if servicio.imagen %}
+                        <div class="redimencionar">
+                            <i><img src="{{servicio.imagen.url}}" alt=""></i>
+                        </div>
+                        {% else %}
+                        <div class="redimencionar">
+                            <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
+                        </div>
+                        {% endif %}
+                        <h4>{{servicio.nombre}}</h4>
+                        <p> {{servicio.descripcion}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row counters">
+
+            <div class="col-lg-3 col-6 text-center">
+                <span data-toggle="counter-up">274</span>
+                <p>Clientes</p>
+            </div>
+
+            <div class="col-lg-3 col-6 text-center">
+                <span data-toggle="counter-up">421</span>
+                <p>Proyectos</p>
+            </div>
+
+            <div class="col-lg-3 col-6 text-center">
+                <span data-toggle="counter-up">1,364</span>
+                <p>Horas de Soporte</p>
+            </div>
+
+            <div class="col-lg-3 col-6 text-center">
+                <span data-toggle="counter-up">18</span>
+                <p>Asesores</p>
+            </div>
+
+        </div>
+
+    </div>
+</section> -->
+
+
+
+{% endblock %}

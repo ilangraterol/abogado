@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+<title>Crear cuenta gratis</title>
+{% endblock  %}
+
+
+{% block intro %}
+<section id="intro" class="clearfix">
+  <div class="container d-flex h-100">
+    <div class="row justify-content-center align-self-center">
+      <div class="col-md-6 intro-info order-md-first order-last">
+
+        <div>
+          <form class="LOGREG-Form" action="" method='POST' autocomplete="off" style="padding: 25px;">
+            {% csrf_token %}
+
+            <p>Por favor ingresa tus datos correctamente</p>
+            <div class="ms_form">
+
+              {{ form.as_table }} <br>
+
+            </div>
+            <div class="FormAcept">
+              <input class="btn-get-started scrollto" type="submit" name="Login" value="Registrarse">
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+
+      <div class="col-md-6 intro-img order-md-last order-first">
+        <img src="{% static 'rapi/img/intro-img.png' %}" alt="" class="img-fluid">
+      </div>
+    </div>
+
+  </div>
+</section><!-- #intro -->
+
+{% endblock %}
+
+
+{% block contenido %}
+
+{% endblock %}

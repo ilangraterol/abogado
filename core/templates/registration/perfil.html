@@ -1,0 +1,123 @@
+{% extends 'core/base.html' %}
+
+
+{% block contenido %}
+<div id="movidyMain">
+
+    <div id="hashu">
+        <div class="Puava"> <img src="https://movidy.co/static/img/no-avatar.png"> </div>
+        <h1>{{user.username}}</h1>
+    </div>
+
+    <div class="perfilWallpaper"
+        style="background-image: linear-gradient(rgba(19, 21, 29, 0.59), rgba(0, 0, 0, 0.79)), url(https://image.tmdb.org/t/p/w1280/ipikQozG6cAtLqhaFqRneA0LI4o.jpg);">
+        <span class="settPrfl" onclick="openBoxSett(1);"><i class="material-icons">settings_applications</i></span>
+        <a href="{% url 'logout' %}" id="393043">Cerrar Sesión</a></div>
+
+
+
+    <div id="boxSettPr">
+
+        <div class="printBoxList2"><i class="material-icons closeList" onclick="openBoxSett(2);">close</i>
+            <h5>Ajustes</h5>
+            <div class="perfilAjustes">
+                <form method="POST" enctype="multipart/form-data" up-target=".printBoxList2">
+                    <div class="uploadAvatar">
+
+                        <label for="conct">
+                            <div class="filename" id="changeNowAva">Click para seleccionar el avatar</div>
+                            <input style="display: none;" id="conct" class="inputfile" type="file" name="profileimg">
+                        </label>
+
+                        <input type="submit" class="upAvatar" name="uploadavatar" value="Subir Avatar">
+
+                    </div>
+                </form>
+
+
+                <div class="AjustesBox">
+                    <span>Cambiar contraseña</span>
+                    <form id="formul" method="POST" up-target=".printBoxList2">
+                        <div class="formState1">
+                            <div class="labelForm">
+                                Nueva contraseña
+                            </div>
+                            <div class="inputForm">
+                                <input type="password" name="newpass">
+                            </div>
+                        </div>
+
+                        <div class="formState1">
+                            <div class="labelForm">
+                                Confirma tu nueva contraseña
+                            </div>
+                            <div class="inputForm">
+                                <input type="password" name="rnewpass">
+                            </div>
+                        </div>
+
+                        <input class="submitS" type="submit" name="cambiarPass" value="Cambiar Contraseña">
+
+                    </form>
+                </div>
+
+
+
+                <div class="AjustesBox">
+                    <span>Privatizar perfil</span>
+                    <p>Al privatizar el perfil queda cerrado para cualquier usuario y solo se verá de ti las listas que
+                        pusiste públicas, para quitar el perfil privado simplemente deja el hueco vacio.</p>
+                    <form id="formula" method="POST" up-target=".printBoxList2">
+                        <div class="formState1">
+                            <div class="labelForm">
+                                Escribe PRIVADO en mayusculas
+                            </div>
+                            <div class="inputForm">
+                                <input type="text" value="" name="private">
+                            </div>
+                        </div>
+
+                        <input class="submitS" type="submit" name="privatizado" value="Privatizar Perfil">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="menuIndexF mindhe">
+        <span>
+            <nav>
+                <a href="https://movidy.co/user/igraterol" class="navA" up-target="body"><i
+                        class="material-icons">tv</i>Series</a>
+                <a href="https://movidy.co/user/igraterol/peliculas" up-target="body"><i
+                        class="material-icons">local_movies</i>Películas</a>
+                <a href="https://movidy.co/user/igraterol/animes" up-target="body"><i
+                        class="material-icons">landscape</i>Animes</a>
+                <a href="https://movidy.co/user/igraterol/listas" up-target="body"><i
+                        class="material-icons">list_alt</i>Listas</a>
+                <a href="https://movidy.co/user/igraterol/criticas-votos" up-target="body"><i
+                        class="material-icons">star</i>Criticas<b> / Votos</b></a>
+            </nav>
+        </span>
+    </div>
+
+    <nav class="navSectionPerfil">
+        <div>
+            <a href="https://movidy.co/user/igraterol" class="nsecPerA" up-target="body"><i
+                    class="material-icons">remove_red_eye</i> Siguiendo</a>
+            <a href="https://movidy.co/user/igraterol/fav" up-target="body"><i class="material-icons">favorite</i>
+                Favoritas</a>
+            <a href="https://movidy.co/user/igraterol/pend" up-target="body"><i class="material-icons">access_time</i>
+                Pendientes</a>
+            <a href="https://movidy.co/user/igraterol/vist" up-target="body"><i
+                    class="material-icons">visibility_off</i> Vistas</a></div>
+    </nav>
+    <div class="noResults"><i class="material-icons">warning</i><b>No se encontraron series siguiendo</b></div>
+</div>
+
+
+{% endblock %}

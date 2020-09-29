@@ -1,0 +1,910 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Quiñones & Villa Associated Lawyers</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'rapi/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'rapi/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <!-- <link href="{% static 'rapi/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'rapi/lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'rapi/lib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'rapi/lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'rapi/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'rapi/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'rapi/css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+
+<!-- Btn whatsapp -->
+<div class="btn-whatsapp">
+  <a href="#">
+    <!-- <a href="https://wa.me/{{afiliado.prefijo}}
+                                {{afiliado.telefono}}?text=
+                                {{mensaje.saludo}}%20
+                                {{afiliado.nombre}}%20
+                                {{afiliado.apellido}}%20
+                                {{mensaje.asunto}}
+                                {{afiliado.mensualidad}}%20
+                                {{mensaje.asunto2}}%20
+                                {{ afiliado.servicios.all|join:', '}}%20
+                                {{mensaje.mensaje}}%20
+                                {{mensaje.despedida}}" target="_blank"> -->
+    <img style="width: 100%;" src="{% static 'rapi/img/whatsapp.gif' %}" alt="whatsapp">
+  </a>
+</div>
+
+<!--==========================
+  Header
+  ============================-->
+
+<header id="header">
+
+  <div id="topbar">
+    <div class="container">
+      <div class="social-links">
+        <a target=_blank href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+        <a target=_blank href="https://www.facebook.com/Qui%C3%B1ones-Villa-Lawyers-1472497416159743"
+          class="facebook"><i class="fa fa-facebook"></i></a>
+        <a target=_blank href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+        <a target=_blank href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="container">
+
+    <div class="logo float-left">
+      <!-- Uncomment below if you prefer to use an image logo -->
+
+      <h1 class="text-light">
+        <a href="#header" class="scrollto"><img src="{% static 'rapi/img/logo.png' %}" alt="" class="img-fluid"></a>
+        <a href="{% url 'home'%}" class="scrollto">
+          <span>Quiñones & Villa</span><br>
+          <span>Associated Lawyers</span>
+        </a></h1>
+    </div>
+
+    <nav class="main-nav float-right d-none d-lg-block">
+      <ul>
+        <li class="active"><a href="{% url 'home' %}">Inicio</a></li>
+
+
+        <li class="drop-down"><a href="">Servicios</a>
+          <ul>
+            <li class="#"><a href="{% url 'services_list_juridicos'  %}">Jurídicos</a>
+              <!-- <ul>
+                {% for servicio in juridico %}
+                <li><a href="{% url 'service_detail' servicio.id %}">{{servicio.nombre}}</a></li>
+                {% endfor %}
+              </ul> -->
+            </li>
+            <li class="#"><a href="{% url 'services_list_contables'  %}">Contables</a>
+              <!-- <ul>
+                {% for servicio in contable %}
+                <li><a href="#">{{servicio.nombre}}</a></li>
+                {% endfor %}
+              </ul> -->
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a></li>
+        <li><a href="#">Blog</a></li>
+        <li>
+          <a name="" id="" class="btn btn-outline-primary btn-sm" href="{% url 'contacto' %}" role="button"
+            style="color: white;">Contactanos</a>
+
+        </li>
+
+
+
+      </ul>
+
+
+    </nav><!-- .main-nav -->
+
+  </div>
+</header><!-- #header -->
+
+{% block intro%}
+<!--==========================
+    Intro Section
+  ============================-->
+
+<section id="intro" class="clearfix">
+  <div class="container d-flex h-100">
+    <div class="row justify-content-center align-self-center">
+      <div class="col-md-6 intro-info order-md-first order-last">
+        <h2>Ofrecemos soluciones para manejar sus procesos <br>jurídicos y contables <span>con calidad y
+            oportunidad!</span></h2>
+
+
+        <div>
+          {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="btn-get-started scrollto">Bienvenido: {{ user.username}}</a>
+          {% else %}
+          <a href="{% url 'login' %}" class="btn-get-started scrollto">¡Te Llamamos!</a>
+          <a>|</a>
+          <a href="{% url 'contacto' %}" class="btn-get-started scrollto">Contáctanos</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="col-md-6 intro-img order-md-last order-first">
+        <img src="{% static 'rapi/img/intro-img.png' %}" alt="" class="img-fluid">
+      </div>
+    </div>
+
+  </div>
+</section><!-- #intro -->
+
+{% endblock %}
+
+
+<main id="main">
+  {% block contenido %}
+  <!--==========================
+      About Us Section
+    ============================-->
+  {% for about in about %}
+  <!-- <section id="about">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-5 col-md-6">
+          <div class="about-img">
+            <img src="{{ ab.imagen.url }}" alt="">
+          </div>
+        </div>
+
+        <div class="col-lg-7 col-md-6">
+          <div class="about-content">
+            <h2>{{ about.titulo}}</h2>
+            <h3>{{ about.subtitulo}}</h3>
+            <p>{{ about.descripcion}}</p>
+            <p>{{ about.descripcion2}}</p>
+            <ul>
+              {% for tips in about.tips.all %}
+              <li><i class="ion-android-checkmark-circle"></i> {{tips.nombre}}</li>
+              {% endfor %}
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- #about -->
+  {% endfor %}
+
+  <!--==========================
+      Seccion de Servicios
+    ============================-->
+
+  <section id="services" class="section-bg">
+    <div class="container">
+
+
+      <header class="section-header">
+        <h3>Nuestros Servicios</h3>
+      </header>
+
+      <div class="row">
+        {% for servicio in servicios %}
+        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+
+          <div class="box">
+            <a href="#">
+              <!-- <div class="icon" style="background: #fceef3;"><i class="{{servicio.icono}}" style="color: #ff689b;"></i>
+              </div> -->
+
+
+              {% if servicio.imagen %}
+              <div class="redimencionar">
+                <i><img src="{{servicio.imagen.url}}" alt=""></i>
+              </div>
+              {% else %}
+              <div class="redimencionar">
+                <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
+              </div>
+              {% endif %}
+
+              <h4 class="title"><a href="#">{{servicio.nombre }}</a></h4>
+              <p class="description">{{servicio.descripcion}}</p>
+              <a name="" id="" class="btn btn-primary btn-sm" href="/servicios/{{servicio.tipoServicio}}"
+                role="button">Ver
+                Más</a>
+
+
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+  </section><!-- #services -->
+
+
+  <!--==========================
+      Why Us Section
+    ============================-->
+  <!-- <section id="why-us" class="wow fadeIn">
+    <div class="container-fluid">
+
+      <header class="section-header">
+        <h3>Why choose us?</h3>
+        <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.</p>
+      </header>
+
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="why-us-img">
+            <img src="{% static '/rapi/img/why-us.jpg' %}" alt="" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="why-us-content">
+            <p>Molestiae omnis numquam corrupti omnis itaque. Voluptatum quidem impedit. Odio dolorum exercitationem
+              est error omnis repudiandae ad dolorum sit.</p>
+            <p>
+              Explicabo repellendus quia labore. Non optio quo ea ut ratione et quaerat. Porro facilis deleniti porro
+              consequatur
+              et temporibus. Labore est odio.
+
+              Odio omnis saepe qui. Veniam eaque ipsum. Ea quia voluptatum quis explicabo sed nihil repellat..
+            </p>
+
+            <div class="features wow bounceInUp clearfix">
+              <i class="fa fa-diamond" style="color: #f058dc;"></i>
+              <h4>Corporis dolorem</h4>
+              <p>Commodi quia voluptatum. Est cupiditate voluptas quaerat officiis ex alias dignissimos et ipsum.
+                Soluta at enim modi ut incidunt dolor et.</p>
+            </div>
+
+            <div class="features wow bounceInUp clearfix">
+              <i class="fa fa-object-group" style="color: #ffb774;"></i>
+              <h4>Eum ut aspernatur</h4>
+              <p>Molestias eius rerum iusto voluptas et ab cupiditate aut enim. Assumenda animi occaecati. Quo dolore
+                fuga quasi autem aliquid ipsum odit. Perferendis doloremque iure nulla aut.</p>
+            </div>
+
+            <div class="features wow bounceInUp clearfix">
+              <i class="fa fa-language" style="color: #589af1;"></i>
+              <h4>Voluptates dolores</h4>
+              <p>Voluptates nihil et quis omnis et eaque omnis sint aut. Ducimus dolorum aspernatur. Totam dolores ut
+                enim ullam voluptas distinctio aut.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="row counters">
+
+        <div class="col-lg-3 col-6 text-center">
+          <span data-toggle="counter-up">274</span>
+          <p>Clients</p>
+        </div>
+
+        <div class="col-lg-3 col-6 text-center">
+          <span data-toggle="counter-up">421</span>
+          <p>Projects</p>
+        </div>
+
+        <div class="col-lg-3 col-6 text-center">
+          <span data-toggle="counter-up">1,364</span>
+          <p>Hours Of Support</p>
+        </div>
+
+        <div class="col-lg-3 col-6 text-center">
+          <span data-toggle="counter-up">18</span>
+          <p>Hard Workers</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section> -->
+
+  <!--==========================
+      Call To Action Section
+    ============================-->
+  <!-- <section id="call-to-action" class="wow fadeInUp">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 text-center text-lg-left">
+          <h3 class="cta-title">Call To Action</h3>
+          <p class="cta-text"> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
+        </div>
+        <div class="col-lg-3 cta-btn-container text-center">
+          <a class="cta-btn align-middle" href="#">Call To Action</a>
+        </div>
+      </div>
+
+    </div>
+  </section> -->
+  <!-- #call-to-action -->
+
+  <!--==========================
+      Features Section
+    ============================-->
+  <!-- <section id="features">
+    <div class="container">
+
+      <div class="row feature-item">
+        <div class="col-lg-6 wow fadeInUp">
+          <img src="{% static 'img/features-1.svg' %}" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
+          <h4>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h4>
+          <p>
+            Ipsum in aspernatur ut possimus sint. Quia omnis est occaecati possimus ea. Quas molestiae perspiciatis
+            occaecati qui rerum. Deleniti quod porro sed quisquam saepe. Numquam mollitia recusandae non ad at et a.
+          </p>
+          <p>
+            Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt
+            veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
+          </p>
+        </div>
+      </div>
+
+      <div class="row feature-item mt-5 pt-5">
+        <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
+          <img src="img/features-2.svg" class="img-fluid" alt="">
+        </div>
+
+        <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
+          <h4>Neque saepe temporibus repellat ea ipsum et. Id vel et quia tempora facere reprehenderit.</h4>
+          <p>
+            Delectus alias ut incidunt delectus nam placeat in consequatur. Sed cupiditate quia ea quis. Voluptas nemo
+            qui aut distinctio. Cumque fugit earum est quam officiis numquam. Ducimus corporis autem at blanditiis
+            beatae incidunt sunt.
+          </p>
+          <p>
+            Voluptas saepe natus quidem blanditiis. Non sunt impedit voluptas mollitia beatae. Qui esse molestias.
+            Laudantium libero nisi vitae debitis. Dolorem cupiditate est perferendis iusto.
+          </p>
+          <p>
+            Eum quia in. Magni quas ipsum a. Quis ex voluptatem inventore sint quia modi. Numquam est aut fuga
+            mollitia exercitationem nam accusantium provident quia.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section> -->
+  <!-- #about -->
+
+  <!--==========================
+      Portfolio Section
+    ============================-->
+  <!-- <section id="portfolio" class="section-bg">
+    <div class="container">
+
+      <header class="section-header">
+        <h3 class="section-title">Our Portfolio</h3>
+      </header>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <ul id="portfolio-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-card">Card</li>
+            <li data-filter=".filter-web">Web</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row portfolio-container">
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/app1.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">App 1</a></h4>
+              <p>App</p>
+              <div>
+                <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web" data-wow-delay="0.1s">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/web3.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">Web 3</a></h4>
+              <p>Web</p>
+              <div>
+                <a href="img/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 3"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-wow-delay="0.2s">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/app2.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">App 2</a></h4>
+              <p>App</p>
+              <div>
+                <a href="img/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 2"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/card2.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">Card 2</a></h4>
+              <p>Card</p>
+              <div>
+                <a href="img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web" data-wow-delay="0.1s">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/web2.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">Web 2</a></h4>
+              <p>Web</p>
+              <div>
+                <a href="img/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 2"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-wow-delay="0.2s">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/app3.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">App 3</a></h4>
+              <p>App</p>
+              <div>
+                <a href="img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/card1.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">Card 1</a></h4>
+              <p>Card</p>
+              <div>
+                <a href="img/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 1"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card" data-wow-delay="0.1s">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/card3.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">Card 3</a></h4>
+              <p>Card</p>
+              <div>
+                <a href="img/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 3"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-web" data-wow-delay="0.2s">
+          <div class="portfolio-wrap">
+            <img src="img/portfolio/web1.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><a href="#">Web 1</a></h4>
+              <p>Web</p>
+              <div>
+                <a href="img/portfolio/web1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 1"
+                  title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section> -->
+  <!-- #portfolio -->
+
+  <!--==========================
+      Clients Section
+    ============================-->
+  <!-- <section id="testimonials">
+    <div class="container">
+
+      <header class="section-header">
+        <h3>Testimonials</h3>
+      </header>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+          <div class="owl-carousel testimonials-carousel wow fadeInUp">
+
+            <div class="testimonial-item">
+              <img src="img/testimonial-1.jpg" class="testimonial-img" alt="">
+              <h3>Saul Goodman</h3>
+              <h4>Ceo &amp; Founder</h4>
+              <p>
+                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium
+                quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+              </p>
+            </div>
+
+            <div class="testimonial-item">
+              <img src="img/testimonial-2.jpg" class="testimonial-img" alt="">
+              <h3>Sara Wilsson</h3>
+              <h4>Designer</h4>
+              <p>
+                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis
+                quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+              </p>
+            </div>
+
+            <div class="testimonial-item">
+              <img src="img/testimonial-3.jpg" class="testimonial-img" alt="">
+              <h3>Jena Karlis</h3>
+              <h4>Store Owner</h4>
+              <p>
+                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim
+                tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+              </p>
+            </div>
+
+            <div class="testimonial-item">
+              <img src="img/testimonial-4.jpg" class="testimonial-img" alt="">
+              <h3>Matt Brandon</h3>
+              <h4>Freelancer</h4>
+              <p>
+                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit
+                minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </section> -->
+  <!-- #testimonials -->
+
+  {% block team%}
+
+  {% endblock %}
+
+  <!--==========================
+      Clients Section
+    ============================-->
+  <!-- <section id="clients" class="wow fadeInUp">
+    <div class="container">
+
+      <header class="section-header">
+        <h3>Our Clients</h3>
+      </header>
+
+      <div class="owl-carousel clients-carousel">
+        <img src="img/clients/client-1.png" alt="">
+        <img src="img/clients/client-2.png" alt="">
+        <img src="img/clients/client-3.png" alt="">
+        <img src="img/clients/client-4.png" alt="">
+        <img src="img/clients/client-5.png" alt="">
+        <img src="img/clients/client-6.png" alt="">
+        <img src="img/clients/client-7.png" alt="">
+        <img src="img/clients/client-8.png" alt="">
+      </div>
+
+    </div>
+  </section> -->
+  <!-- #clients -->
+
+
+
+
+
+
+  <!--==========================
+      Frequently Asked Questions Section
+    ============================-->
+  <section id="faq">
+    <div class="container">
+      <header class="section-header">
+        <h3>Top Consultas</h3>
+        <p>Estas son algunas de las preguntas que otros usuarios ha realizado.</p>
+      </header>
+
+      <ul id="faq-list" class="wow fadeInUp">
+        <li>
+          <a data-toggle="collapse" class="collapsed" href="#faq1">¿Qué pasa si tengo citación en un juzgado y no me
+            presento?
+            <i class="ion-android-remove"></i></a>
+
+          <div id="faq1" class="collapse" data-parent="#faq-list">
+            <p>
+              Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur
+              gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-toggle="collapse" href="#faq2" class="collapsed">¿Cuánto aprox. puede costar el trámite de sucesión de
+            una vivienda? <i class="ion-android-remove"></i></a>
+          <div id="faq2" class="collapse" data-parent="#faq-list">
+            <p>
+              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
+              donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
+              ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-toggle="collapse" href="#faq3" class="collapsed">Tengo 21 años ¿Puedo demandar a mi papá por estudios?
+            <i class="ion-android-remove"></i></a>
+          <div id="faq3" class="collapse" data-parent="#faq-list">
+            <p>
+              Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum
+              integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt.
+              Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+            </p>
+          </div>
+        </li>
+
+        <li>
+          <a data-toggle="collapse" href="#faq4" class="collapsed">¿Se puede mandar a una persona a descargos sin un
+            llamado de atención previo? <i class="ion-android-remove"></i></a>
+          <div id="faq4" class="collapse" data-parent="#faq-list">
+            <p>
+              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
+              donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
+              ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+            </p>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+  </section>
+  <!-- #faq -->
+
+</main>
+
+{% endblock %}
+
+{% block footer %}
+
+<!--==========================
+    Footer
+  ============================-->
+<footer id="footer" class="section-bg">
+  <div class="footer-top">
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-12">
+
+          <div class="row">
+
+            <div class="col-sm-6">
+
+              <div class="footer-info">
+                <h3>Quiñones & Villa Associated Lawyers</h3>
+                <p>Quiñones & Villa Associated Lawyers es equipo de abogados y contadores especializados y con años de
+                  experiencia en derecho laboral, hemos trabajado con diferentes compañías, grandes y pequeñas y de
+                  diferentes sectores como manufacturero, comercial y de servicios. Estamos capacitados para
+                  asesorarlo desde la planeación de la contratratación, pasando por todos lo temas laborales hasta la
+                  finalización de los contratos. Nos encontramos disponibles y atentos para asesorarlos y acompañarlos
+                  en todos los asuntos legales de su compañía.</p>
+              </div>
+
+              <!-- <div class="footer-newsletter">
+                  <h4>Our Newsletter</h4>
+                  <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum
+                    dolore legam minim quorum culpa amet magna export quem.</p>
+                  <form action="" method="post">
+                    <input type="email" name="email"><input type="submit" value="Subscribe">
+                  </form>
+                </div> -->
+
+            </div>
+
+            <div class="col-sm-2">
+              <div class="footer-links">
+                <h4>Links de ayuda</h4>
+                <ul>
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Servicios</a></li>
+                  <li><a href="#">Acerca de Nosotros</a></li>
+                  <li><a href="#">Terminos de Servicios</a></li>
+                  <li><a href="#">Politicas de Privacidad</a></li>
+                </ul>
+              </div>
+
+
+
+              <div class="social-linksTele">
+                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              </div>
+
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+              <div class="footer-links">
+                <h4>Contactenos</h4>
+                <p> Calle 76 N° 54-11 Of. 306<br>
+                  Edificio, World Trade Center <br>
+                  Barranquilla Colombia <br>
+                  <strong>Teléfono:</strong> (05) 3600346 - 3116085011<br>
+                  <strong>Email:</strong> jaimeeduardo_q@hotmail.com<br>
+                </p>
+              </div>
+
+              <!-- <div class="form">
+                                          
+                                                      <h4>Envíanos un mensaje</h4>
+                                                      <p>Pronto nos pondremos en contacto contigo así que no dudes en escribirnos.</p>
+                                                      <form action="" method="post" role="form" class="contactForm">
+                                                        <div class="form-group">
+                                                          <input type="text" name="name" class="form-control" id="name" placeholder="Su nombre"
+                                                            data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                                          <div class="validation"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                          <input type="email" class="form-control" name="email" id="email" placeholder="Su Email"
+                                                            data-rule="email" data-msg="Please enter a valid email" />
+                                                          <div class="validation"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                          <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto"
+                                                            data-rule="minlen:4" data-msg="Ingrese por lo menos 8 caracteres" />
+                                                          <div class="validation"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                          <textarea class="form-control" name="message" rows="5" data-rule="required"
+                                                            data-msg="Please write something for us" placeholder="Mensaje"></textarea>
+                                                          <div class="validation"></div>
+                                                        </div>
+                                          
+                                                        <div id="sendmessage">Su mensaje ha sido enviado Gracias!</div>
+                                                        <div id="errormessage"></div>
+                                          
+                                                        <div class="text-center"><button type="submit" title="Send Message">Enviar Mensaje</button></div>
+                                                      </form>
+                                                    </div> -->
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong>Quiñones & Villa Associated Lawyers</strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="#">Ilan Graterol</a>
+    </div>
+  </div>
+</footer><!-- #footer -->
+
+{% endblock %}
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<!-- Uncomment below i you want to use a preloader -->
+<!-- <div id="preloader"></div> -->
+
+<!-- JavaScript Libraries -->
+<script src="{% static 'rapi/lib/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'rapi/lib/jquery/jquery-migrate.min.js' %}"></script>
+<script src="{% static 'rapi/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'rapi/lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'rapi/lib/mobile-nav/mobile-nav.js' %}"></script>
+<script src="{% static 'rapi/lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'rapi/lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'rapi/lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'rapi/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'rapi/lib/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'rapi/lib/lightbox/js/lightbox.min.js' %}"></script>
+<!-- Contact Form JavaScript File -->
+<script src="{% static 'rapi/contactform/contactform.js' %}"></script>
+
+<!-- Template Main Javascript File -->
+<script src="{% static 'rapi/js/main.js' %}"></script>
+<script src="{% static 'rapi/js/SmoothScroll.min.js' %}"></script>
+
+
+
+
+</body>
+
+</html>

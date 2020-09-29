@@ -1,0 +1,87 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+
+{% block intro%}
+<section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col-md-6 intro-info order-md-first order-last">
+                <h2>Servicios Jurídicos <span>con calidad y
+                        oportunidad!</span></h2>
+
+
+                <div>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="btn-get-started scrollto">Bienvenido: {{ user.username}}</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn-get-started scrollto">¡Te Llamamos!</a>
+                    <a>|</a>
+                    <a href="{% url 'contacto' %}" class="btn-get-started scrollto">Contáctanos</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6 intro-img order-md-last order-first">
+                <img src="{% static 'rapi/img/intro-img_juridico.png' %}" alt="" class="img-fluid">
+            </div>
+        </div>
+
+    </div>
+</section><!-- #intro -->
+
+{% endblock %}
+
+
+{% block contenido %}
+
+<!-- Services Section
+============================-->
+<section id="services" class="section-bg">
+    <div class="container">
+        <h4 style="position: initial;font-size: 40px;font-weight: 600;letter-spacing: 1px;"
+            class="title text-center pb-md-3 mb-3">Servicios
+            <span style="color: #413e66;"> Jurídicos</span></h4>
+
+        <!-- <header class="section-header">
+            <h3>Servicios Jurídicos</h3>
+            <!-- <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.
+            </p> -->
+        </header> -->
+        <div class="row">
+            {% for servicio in juridico %}
+            <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                <div class="box">
+                    <!-- <div class="icon" style="background: #fceef3;">
+                        <i class="ion-ios-analytics-outline" style="color: #ff689b;"></i>
+                    </div> -->
+                    {% if servicio.imagen %}
+                    <div class="redimencionar">
+                        <i><img src="{{servicio.imagen.url}}" alt=""></i>
+                    </div>
+                    {% else %}
+                    <div class="redimencionar">
+                        <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
+                    </div>
+                    {% endif %}
+                    <h4 class="title"><a href="">{{servicio.nombre}}</a></h4>
+                    <p class="description">{{servicio.descripcion}}</p><br>
+
+
+                    <div class="test">
+                        <!-- <button type="button" class="btn btn-primary btn-sm">¡Te Llamamos!</button> -->
+
+                        <button type="button" href="{% url 'contacto'%}"
+                            class="btn btn-primary btn-sm">Contáctanos</button>
+                    </div>
+
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+{% endblock %}
