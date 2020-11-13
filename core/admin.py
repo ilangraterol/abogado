@@ -9,7 +9,7 @@ class CaracteristicaInline(admin.TabularInline):
 class ServicioAdmin(admin.ModelAdmin):
 	list_display = ('nombre', 'tipoServicio')
 	# list_filter = ('estatus','dpto', 'especialidad')
-	ordering = ('nombre',)   
+	ordering = ('tipoServicio',)   
 	inlines = [CaracteristicaInline, ]
 admin.site.register(Servicio, ServicioAdmin)
 
@@ -22,5 +22,3 @@ admin.site.register(TipoServicio)
 
 admin.site.register(Contactanos)  
 admin.site.register(About)
-admin.site.register(Tips)
- 

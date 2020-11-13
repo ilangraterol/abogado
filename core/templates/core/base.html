@@ -35,8 +35,15 @@
   <!-- Main Stylesheet File -->
   <link href="{% static 'rapi/css/style.css' %}" rel="stylesheet">
 
+  <!-- Estilos personalizados -->
+
+  <link href="{% static 'rapi/css/estilos.css' %}" rel="stylesheet">
+
+
 
 </head>
+
+
 
 
 <!-- Btn whatsapp -->
@@ -117,8 +124,12 @@
         <li><a href="{% url 'quienes_somos' %}">¿Quiénes Somos?</a></li>
         <li><a href="#">Blog</a></li>
         <li>
-          <a name="" id="" class="btn btn-outline-primary btn-sm" href="{% url 'contacto' %}" role="button"
-            style="color: white;">Contactanos</a>
+          <a href="{% url 'contacto' %}" class="btn btn-outline-primary">Contactanos</a>
+          <!-- <button type="button" class="btn btn-outline-primary">Contactanos</button> -->
+          <!-- <a name="" id="" class="btn btn-outline-primary" href="{% url 'contacto' %}" role="button"
+            style="color: white;">Contactanos</a> -->
+
+
 
         </li>
 
@@ -137,43 +148,47 @@
     Intro Section
   ============================-->
 
-<section id="intro" class="clearfix">
-  <div class="container d-flex h-100">
-    <div class="row justify-content-center align-self-center">
-      <div class="col-md-6 intro-info order-md-first order-last">
-        <h2>Ofrecemos soluciones para manejar sus procesos <br>jurídicos y contables <span>con calidad y
-            oportunidad!</span></h2>
+<body>
+
+  <section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+      <div class="row justify-content-center align-self-center">
+        <div class="col-lg-6 intro-info order-lg-first order-last">
+          <h2>Ofrecemos soluciones para manejar sus procesos <br>jurídicos y contables <span>con calidad y
+              oportunidad!</span></h2>
 
 
-        <div>
-          {% if user.is_authenticated %}
-          <a href="{% url 'logout' %}" class="btn-get-started scrollto">Bienvenido: {{ user.username}}</a>
-          {% else %}
-          <a href="{% url 'login' %}" class="btn-get-started scrollto">¡Te Llamamos!</a>
-          <a>|</a>
-          <a href="{% url 'contacto' %}" class="btn-get-started scrollto">Contáctanos</a>
-          {% endif %}
+          <div>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn-get-started scrollto">Bienvenido: {{ user.username}}</a>
+            <!-- <a href="{% url 'logout' %}" class="btn-get-started scrollto">Bienvenido: {{ user.username}}</a> login   -->
+            <!-- <a href="{% url 'login' %}" class="btn-get-started scrollto">¡Te Llamamos!</a> login -->
+            {% else %}
+            <a href="{% url 'contacto' %}" class="btn-get-started scrollto">¡Te Llamamos!</a>
+            <a>|</a>
+            <a href="{% url 'contacto' %}" class="btn-get-started scrollto">Contáctanos</a>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="col-md-6 intro-img order-lg-last order-first">
+          <img src="{% static 'rapi/img/intro-img.png' %}" alt="" class="img-fluid">
         </div>
       </div>
 
-      <div class="col-md-6 intro-img order-md-last order-first">
-        <img src="{% static 'rapi/img/intro-img.png' %}" alt="" class="img-fluid">
-      </div>
     </div>
+  </section><!-- #intro -->
 
-  </div>
-</section><!-- #intro -->
-
-{% endblock %}
+  {% endblock %}
 
 
-<main id="main">
-  {% block contenido %}
-  <!--==========================
+  <main id="main">
+    {% block contenido %}
+    <!--==========================
       About Us Section
     ============================-->
-  {% for about in about %}
-  <!-- <section id="about">
+    {% for about in about %}
+    <!-- <section id="about">
 
     <div class="container">
       <div class="row">
@@ -202,60 +217,89 @@
       </div>
     </div>
   </section> -->
-  <!-- #about -->
-  {% endfor %}
+    <!-- #about -->
+    {% endfor %}
 
-  <!--==========================
+    <!--==========================
       Seccion de Servicios
     ============================-->
 
-  <section id="services" class="section-bg">
-    <div class="container">
+    <section class="servicios py-4">
+      <div class="container-fluid">
 
+        <h1 class="display-5 text-center text-primary"><strong>Nuestros Servicios</strong></h1>
+        <div class="row text-center">
 
-      <header class="section-header">
-        <h3>Nuestros Servicios</h3>
-      </header>
-
-      <div class="row">
-        {% for servicio in servicios %}
-        <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
-
-          <div class="box">
-            <a href="#">
-              <!-- <div class="icon" style="background: #fceef3;"><i class="{{servicio.icono}}" style="color: #ff689b;"></i>
-              </div> -->
-
-
+          {% for servicio in juridico %}
+          <article class="col-12 col-md-6 col-lg-4 mb-3 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="card">
               {% if servicio.imagen %}
               <div class="redimencionar">
-                <i><img src="{{servicio.imagen.url}}" alt=""></i>
+                <i><img src="{{servicio.imagen.url}}" class="card-img-top mt-2" alt="{{servicio.nombre}}"></i>
               </div>
               {% else %}
               <div class="redimencionar">
-                <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
+                <i><img src="{% static 'rapi/img/default_services.png' %}" class="card-img-top mt-2"
+                    alt="{{servicio.nombre}}"></i>
               </div>
               {% endif %}
 
-              <h4 class="title"><a href="#">{{servicio.nombre }}</a></h4>
-              <p class="description">{{servicio.descripcion}}</p>
-              <a name="" id="" class="btn btn-primary btn-sm" href="/servicios/{{servicio.tipoServicio}}"
-                role="button">Ver
-                Más</a>
+              <div class="card-body">
+                <h5 class="card-title h3"><strong>{{servicio.nombre}}</strong> </h5>
+                <p class="card-text">{{servicio.descripcion|truncatechars:250}}</p>
+                <a href="{% url 'service_detail' servicio.id %}" class="btn btn-primary">Ver Más</a>
+              </div>
+            </div>
+          </article>
 
+          {% endfor %}
 
-          </div>
         </div>
-        {% endfor %}
+
+        <h1 class="display-5 text-center text-primary"><strong>Otros Servicios (Contables)</strong></h1>
+        <div class="row text-center">
+
+          {% for servicio in contable %}
+          <article class="col-12 col-md-4 col-lg-3 mb-3 wow bounceInUp" data-wow-duration="1.4s">
+
+
+            <div class="card">
+              {% if servicio.imagen %}
+              <div class="redimencionar">
+                <i><img src="{{servicio.imagen.url}}" class="card-img-top mt-2" alt="{{servicio.nombre}}"></i>
+              </div>
+              {% else %}
+              <div class="redimencionar">
+                <i><img src="{% static 'rapi/img/default_services.png' %}" class="card-img-top mt-2"
+                    alt="{{servicio.nombre}}"></i>
+              </div>
+              {% endif %}
+
+              <div class="card-body">
+                <h5 class="card-title h3"><strong>{{servicio.nombre}}</strong> </h5>
+                <p class="card-text">{{servicio.descripcion|truncatechars:250}}</p>
+                <a href="{% url 'service_detail' servicio.id %}" class="btn btn-primary">Ver Más</a>
+              </div>
+            </div>
+
+          </article>
+          {% endfor %}
+
+        </div>
+
 
       </div>
-  </section><!-- #services -->
+    </section>
 
 
-  <!--==========================
+
+
+
+
+    <!--==========================
       Why Us Section
     ============================-->
-  <!-- <section id="why-us" class="wow fadeIn">
+    <!-- <section id="why-us" class="wow fadeIn">
     <div class="container-fluid">
 
       <header class="section-header">
@@ -340,10 +384,10 @@
     </div>
   </section> -->
 
-  <!--==========================
+    <!--==========================
       Call To Action Section
     ============================-->
-  <!-- <section id="call-to-action" class="wow fadeInUp">
+    <!-- <section id="call-to-action" class="wow fadeInUp">
     <div class="container">
       <div class="row">
         <div class="col-lg-9 text-center text-lg-left">
@@ -359,12 +403,12 @@
 
     </div>
   </section> -->
-  <!-- #call-to-action -->
+    <!-- #call-to-action -->
 
-  <!--==========================
+    <!--==========================
       Features Section
     ============================-->
-  <!-- <section id="features">
+    <!-- <section id="features">
     <div class="container">
 
       <div class="row feature-item">
@@ -410,12 +454,12 @@
 
     </div>
   </section> -->
-  <!-- #about -->
+    <!-- #about -->
 
-  <!--==========================
+    <!--==========================
       Portfolio Section
     ============================-->
-  <!-- <section id="portfolio" class="section-bg">
+    <!-- <section id="portfolio" class="section-bg">
     <div class="container">
 
       <header class="section-header">
@@ -574,12 +618,12 @@
 
     </div>
   </section> -->
-  <!-- #portfolio -->
+    <!-- #portfolio -->
 
-  <!--==========================
+    <!--==========================
       Clients Section
     ============================-->
-  <!-- <section id="testimonials">
+    <!-- <section id="testimonials">
     <div class="container">
 
       <header class="section-header">
@@ -639,16 +683,16 @@
 
     </div>
   </section> -->
-  <!-- #testimonials -->
+    <!-- #testimonials -->
 
-  {% block team%}
+    {% block team%}
 
-  {% endblock %}
+    {% endblock %}
 
-  <!--==========================
+    <!--==========================
       Clients Section
     ============================-->
-  <!-- <section id="clients" class="wow fadeInUp">
+    <!-- <section id="clients" class="wow fadeInUp">
     <div class="container">
 
       <header class="section-header">
@@ -668,239 +712,230 @@
 
     </div>
   </section> -->
-  <!-- #clients -->
+    <!-- #clients -->
 
 
 
 
 
 
-  <!--==========================
+    <!--==========================
       Frequently Asked Questions Section
     ============================-->
-  <section id="faq">
-    <div class="container">
-      <header class="section-header">
-        <h3>Top Consultas</h3>
-        <p>Estas son algunas de las preguntas que otros usuarios ha realizado.</p>
-      </header>
+    <section id="faq">
+      <div class="container">
+        <header class="section-header">
+          <h1 class="display-5 text-center text-primary"><strong>Top Consultas</strong></h1>
+          <p>Estas son algunas de las preguntas que otros usuarios ha realizado.</p>
+        </header>
 
-      <ul id="faq-list" class="wow fadeInUp">
-        <li>
-          <a data-toggle="collapse" class="collapsed" href="#faq1">¿Qué pasa si tengo citación en un juzgado y no me
-            presento?
-            <i class="ion-android-remove"></i></a>
+        <ul id="faq-list" class="wow fadeInUp">
+          <li>
+            <a data-toggle="collapse" class="collapsed" href="#faq1">¿Qué pasa si tengo citación en un juzgado y no me
+              presento?
+              <i class="ion-android-remove"></i></a>
 
-          <div id="faq1" class="collapse" data-parent="#faq-list">
-            <p>
-              Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur
-              gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-            </p>
-          </div>
-        </li>
+            <div id="faq1" class="collapse" data-parent="#faq-list">
+              <p>
+                Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur
+                gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+              </p>
+            </div>
+          </li>
 
-        <li>
-          <a data-toggle="collapse" href="#faq2" class="collapsed">¿Cuánto aprox. puede costar el trámite de sucesión de
-            una vivienda? <i class="ion-android-remove"></i></a>
-          <div id="faq2" class="collapse" data-parent="#faq-list">
-            <p>
-              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
-              donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
-              ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-            </p>
-          </div>
-        </li>
+          <li>
+            <a data-toggle="collapse" href="#faq2" class="collapsed">¿Cuánto aprox. puede costar el trámite de sucesión
+              de
+              una vivienda? <i class="ion-android-remove"></i></a>
+            <div id="faq2" class="collapse" data-parent="#faq-list">
+              <p>
+                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
+                donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
+                ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+              </p>
+            </div>
+          </li>
 
-        <li>
-          <a data-toggle="collapse" href="#faq3" class="collapsed">Tengo 21 años ¿Puedo demandar a mi papá por estudios?
-            <i class="ion-android-remove"></i></a>
-          <div id="faq3" class="collapse" data-parent="#faq-list">
-            <p>
-              Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum
-              integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt.
-              Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
-            </p>
-          </div>
-        </li>
+          <li>
+            <a data-toggle="collapse" href="#faq3" class="collapsed">Tengo 21 años ¿Puedo demandar a mi papá por
+              estudios?
+              <i class="ion-android-remove"></i></a>
+            <div id="faq3" class="collapse" data-parent="#faq-list">
+              <p>
+                Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum
+                integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt.
+                Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+              </p>
+            </div>
+          </li>
 
-        <li>
-          <a data-toggle="collapse" href="#faq4" class="collapsed">¿Se puede mandar a una persona a descargos sin un
-            llamado de atención previo? <i class="ion-android-remove"></i></a>
-          <div id="faq4" class="collapse" data-parent="#faq-list">
-            <p>
-              Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
-              donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
-              ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-            </p>
-          </div>
-        </li>
+          <li>
+            <a data-toggle="collapse" href="#faq4" class="collapsed">¿Se puede mandar a una persona a descargos sin un
+              llamado de atención previo? <i class="ion-android-remove"></i></a>
+            <div id="faq4" class="collapse" data-parent="#faq-list">
+              <p>
+                Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
+                donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
+                ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+              </p>
+            </div>
+          </li>
 
-      </ul>
+        </ul>
 
-    </div>
-  </section>
-  <!-- #faq -->
+      </div>
+    </section>
+    <!-- #faq -->
 
-</main>
+  </main>
 
-{% endblock %}
+  {% endblock %}
 
-{% block footer %}
+  {% block footer %}
 
-<!--==========================
+  <!--==========================
     Footer
   ============================-->
-<footer id="footer" class="section-bg">
-  <div class="footer-top">
-    <div class="container">
+  <footer id="footer" class="section-bg">
+    <div class="footer-top">
+      <div class="container-fluid">
 
-      <div class="row">
+        <div class="row">
 
-        <div class="col-lg-12">
+          <div class="col-12 col-md-9 text-center text-md-center">
 
-          <div class="row">
-
-            <div class="col-sm-6">
-
-              <div class="footer-info">
-                <h3>Quiñones & Villa Associated Lawyers</h3>
-                <p>Quiñones & Villa Associated Lawyers es equipo de abogados y contadores especializados y con años de
-                  experiencia en derecho laboral, hemos trabajado con diferentes compañías, grandes y pequeñas y de
-                  diferentes sectores como manufacturero, comercial y de servicios. Estamos capacitados para
-                  asesorarlo desde la planeación de la contratratación, pasando por todos lo temas laborales hasta la
-                  finalización de los contratos. Nos encontramos disponibles y atentos para asesorarlos y acompañarlos
-                  en todos los asuntos legales de su compañía.</p>
-              </div>
-
-              <!-- <div class="footer-newsletter">
-                  <h4>Our Newsletter</h4>
-                  <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum
-                    dolore legam minim quorum culpa amet magna export quem.</p>
-                  <form action="" method="post">
-                    <input type="email" name="email"><input type="submit" value="Subscribe">
-                  </form>
-                </div> -->
-
+            <div class="footer-info">
+              <h2>Quiñones & Villa Associated Lawyers</h2>
+              <p>Quiñones & Villa Associated Lawyers es equipo de abogados, con años de experiencia en derecho
+                laboral, hemos trabajado con diferentes compañías, grandes y pequeñas y de
+                diferentes sectores como manufacturero, comercial y de servicios. Estamos capacitados para
+                asesorarlo desde la planeación de la contratratación, pasando por todos lo temas laborales hasta la
+                finalización de los contratos. Nos encontramos disponibles y atentos para asesorarlos y acompañarlos
+                en todos los asuntos legales de su compañía.</p>
             </div>
 
-            <div class="col-sm-2">
-              <div class="footer-links">
-                <h4>Links de ayuda</h4>
-                <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Servicios</a></li>
-                  <li><a href="#">Acerca de Nosotros</a></li>
-                  <li><a href="#">Terminos de Servicios</a></li>
-                  <li><a href="#">Politicas de Privacidad</a></li>
-                </ul>
-              </div>
+            <!-- <div class="footer-newsletter">
+              <h4>Our Newsletter</h4>
+              <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum
+                dolore legam minim quorum culpa amet magna export quem.</p>
+              <form action="" method="post">
+                <input type="email" name="email"><input type="submit" value="Subscribe">
+              </form>
+            </div> -->
 
+          </div>
 
-
-              <div class="social-linksTele">
-                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-              </div>
-
-
+          <div class="col-6 col-md-3 text-right text-md-left">
+            <div class="footer-links">
+              <h3>Links de ayuda</h3>
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Acerca de Nosotros</a></li>
+                <li><a href="#">Terminos de Servicios</a></li>
+                <li><a href="#">Politicas de Privacidad</a></li>
+              </ul>
             </div>
 
 
-            <div class="col-lg-4">
 
-              <div class="footer-links">
-                <h4>Contactenos</h4>
-                <p> Calle 76 N° 54-11 Of. 306<br>
-                  Edificio, World Trade Center <br>
-                  Barranquilla Colombia <br>
-                  <strong>Teléfono:</strong> (05) 3600346 - 3116085011<br>
-                  <strong>Email:</strong> jaimeeduardo_q@hotmail.com<br>
-                </p>
-              </div>
-
-              <!-- <div class="form">
-                                          
-                                                      <h4>Envíanos un mensaje</h4>
-                                                      <p>Pronto nos pondremos en contacto contigo así que no dudes en escribirnos.</p>
-                                                      <form action="" method="post" role="form" class="contactForm">
-                                                        <div class="form-group">
-                                                          <input type="text" name="name" class="form-control" id="name" placeholder="Su nombre"
-                                                            data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                                          <div class="validation"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                          <input type="email" class="form-control" name="email" id="email" placeholder="Su Email"
-                                                            data-rule="email" data-msg="Please enter a valid email" />
-                                                          <div class="validation"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                          <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto"
-                                                            data-rule="minlen:4" data-msg="Ingrese por lo menos 8 caracteres" />
-                                                          <div class="validation"></div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                          <textarea class="form-control" name="message" rows="5" data-rule="required"
-                                                            data-msg="Please write something for us" placeholder="Mensaje"></textarea>
-                                                          <div class="validation"></div>
-                                                        </div>
-                                          
-                                                        <div id="sendmessage">Su mensaje ha sido enviado Gracias!</div>
-                                                        <div id="errormessage"></div>
-                                          
-                                                        <div class="text-center"><button type="submit" title="Send Message">Enviar Mensaje</button></div>
-                                                      </form>
-                                                    </div> -->
-
+            <div class="social-linksTele text-right text-md-left">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
             </div>
+
+
+          </div>
+
+          <div class="col-6 col-md-12 text-md-center">
+
+            <div class="footer-links align-content-center">
+              <h3>Contactenos</h3>
+              <p> Calle 76 N° 54-11 Of. 306<br>
+                Edificio, World Trade Center <br>
+                Barranquilla Colombia <br>
+                <strong>Teléfono:</strong> (05) 3600346 - 3116085011<br>
+                <strong>Email:</strong> villa.fernandez@hotmail.com<br>
+                <strong>Email:</strong> jaimeeduardo_q@hotmail.com<br>
+              </p>
+            </div>
+
+            <!-- <div class="form">
+                                      
+                                                  <h4>Envíanos un mensaje</h4>
+                                                  <p>Pronto nos pondremos en contacto contigo así que no dudes en escribirnos.</p>
+                                                  <form action="" method="post" role="form" class="contactForm">
+                                                    <div class="form-group">
+                                                      <input type="text" name="name" class="form-control" id="name" placeholder="Su nombre"
+                                                        data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                                      <div class="validation"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <input type="email" class="form-control" name="email" id="email" placeholder="Su Email"
+                                                        data-rule="email" data-msg="Please enter a valid email" />
+                                                      <div class="validation"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto"
+                                                        data-rule="minlen:4" data-msg="Ingrese por lo menos 8 caracteres" />
+                                                      <div class="validation"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <textarea class="form-control" name="message" rows="5" data-rule="required"
+                                                        data-msg="Please write something for us" placeholder="Mensaje"></textarea>
+                                                      <div class="validation"></div>
+                                                    </div>
+                                      
+                                                    <div id="sendmessage">Su mensaje ha sido enviado Gracias!</div>
+                                                    <div id="errormessage"></div>
+                                      
+                                                    <div class="text-center"><button type="submit" title="Send Message">Enviar Mensaje</button></div>
+                                                  </form>
+                                                </div> -->
+
           </div>
 
         </div>
 
-
-
-
-
       </div>
-
     </div>
-  </div>
 
-  <div class="container">
-    <div class="copyright">
-      &copy; Copyright <strong>Quiñones & Villa Associated Lawyers</strong>. All Rights Reserved
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Quiñones & Villa Associated Lawyers</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="#">Ilan Graterol</a>
+      </div>
     </div>
-    <div class="credits">
-      Designed by <a href="#">Ilan Graterol</a>
-    </div>
-  </div>
-</footer><!-- #footer -->
+  </footer><!-- #footer -->
 
-{% endblock %}
+  {% endblock %}
 
-<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-<!-- Uncomment below i you want to use a preloader -->
-<!-- <div id="preloader"></div> -->
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
 
-<!-- JavaScript Libraries -->
-<script src="{% static 'rapi/lib/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'rapi/lib/jquery/jquery-migrate.min.js' %}"></script>
-<script src="{% static 'rapi/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'rapi/lib/easing/easing.min.js' %}"></script>
-<script src="{% static 'rapi/lib/mobile-nav/mobile-nav.js' %}"></script>
-<script src="{% static 'rapi/lib/wow/wow.min.js' %}"></script>
-<script src="{% static 'rapi/lib/waypoints/waypoints.min.js' %}"></script>
-<script src="{% static 'rapi/lib/counterup/counterup.min.js' %}"></script>
-<script src="{% static 'rapi/lib/owlcarousel/owl.carousel.min.js' %}"></script>
-<script src="{% static 'rapi/lib/isotope/isotope.pkgd.min.js' %}"></script>
-<script src="{% static 'rapi/lib/lightbox/js/lightbox.min.js' %}"></script>
-<!-- Contact Form JavaScript File -->
-<script src="{% static 'rapi/contactform/contactform.js' %}"></script>
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'rapi/lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/mobile-nav/mobile-nav.js' %}"></script>
+  <script src="{% static 'rapi/lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/isotope/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'rapi/lib/lightbox/js/lightbox.min.js' %}"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'rapi/contactform/contactform.js' %}"></script>
 
-<!-- Template Main Javascript File -->
-<script src="{% static 'rapi/js/main.js' %}"></script>
-<script src="{% static 'rapi/js/SmoothScroll.min.js' %}"></script>
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'rapi/js/main.js' %}"></script>
+  <script src="{% static 'rapi/js/SmoothScroll.min.js' %}"></script>
 
 
 

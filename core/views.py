@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView, View
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from .forms import *
-from core.models import Servicio, Company, About, Tips
+from core.models import Servicio, Company, About, Tips, Caracteristica
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import login, authenticate
@@ -61,7 +61,8 @@ class HomeView(ListView): #Lista de Series
         context['contable'] = servicios.filter(tipoServicio__nombre = 'contables' )
         context['company'] = Company.objects.all()
         context['about'] = About.objects.all()
-        context['tips'] = Tips.objects.filter()
+        context['tips'] = Caracteristica.objects.filter(servicio__id=2)
+        
 
         return context
     
@@ -85,6 +86,7 @@ class ServicioDetailView(DetailView): #Detalle de Pelicula
     template_name =  'core/abogado/service_detail.html'  
     
     def get_context_data(self, **kwargs):
+        pk = self.kwargs.get('pk')
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in the publisher
@@ -93,10 +95,10 @@ class ServicioDetailView(DetailView): #Detalle de Pelicula
         context['juridico'] = servicios.filter(tipoServicio__nombre = 'juridicos' )
         context['contable'] = servicios.filter(tipoServicio__nombre = 'contables' )
 
-        context['servicios'] = servicio
+        context['servicios'] = servicios
         context['company'] = Company.objects.all()
         context['about'] = About.objects.all()
-        context['tips'] = Tips.objects.filter()
+        context['caracteristica'] = Caracteristica.objects.filter(servicio__id=pk)
 
         return context          
 
@@ -114,6 +116,7 @@ class ServicesListView(ListView): #Lista de Series
         context['servicios'] = servicios
         context['juridico'] = servicios.filter(tipoServicio__nombre = 'juridicos' )
         context['contable'] = servicios.filter(tipoServicio__nombre = 'contables' )
+        
 
 
         return context    

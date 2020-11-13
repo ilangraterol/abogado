@@ -3,108 +3,123 @@
 
 {% block contenido %}
 
-<div class="container-fluid">
 
-    <header class="section-header">
-        <h3>{{object.nombre}}</h3>
-        <p>{{object.descripcion}}</p>
+<section class="ingenieria py-4  text-center text-white">
+    <div class="container bg-primary">
+        <div class="row">
+            <div class="col-12 text-center pt-3">
+                <h1 class="display-5 text-center text-white"><strong>{{object.nombre}}</strong></h1>
+                <p class="h4">{{object.descripcion}}</p> <br>
 
-    </header>
-</div>
 
-<!-- mas servicios -->
 
-<section id="why-us" class="wow fadeIn">
+                <ul class="list-unstyled text-left">
+                    <p class="h4 text-center"> <strong>Las principales áreas de práctica del departamento son:</strong>
+                    </p>
+
+
+                    <li>
+                        <ul>
+                            {% for tip in caracteristica %}
+                            <li> {{tip.nombre}}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                </ul>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Services Section
+============================-->
+<section class="servicios py-4">
     <div class="container-fluid">
 
-        <header class="section-header">
-            <h3>Mas Servicios</h3>
-            <p>Contamos con especialistas en diferentes áreas tanto jurídicas como contables.</p>
-        </header>
+        <h1 class="display-5 text-center text-primary"><strong>Nuestros Servicios</strong></h1>
 
-        <div class="row">
 
-            <div class="col-lg-8">
+        <div class="row text-center">
 
-                <div class="why-us-content">
-                    <h4>Servicios jurídicos </h4>
-                    <p>Ofrecemos una atención personalizada e integral, brindando soluciones jurídicas. Prácticas,
-                        dinámicas y confiables. ¡Llámanos! Abogados Civiles. Servicios: Abogados Laborales, Sports &
-                        Entertainment, Extinción de dominio, Abogados Civiles, Abogados Inmobiliarios.</p>
+            {% for servicio in juridico %}
+            <article class="col-12 col-md-6 mb-3 wow bounceInUp" data-wow-duration="1.4s">
 
-                    <div class="features wow bounceInUp clearfix">
-                        {% for servicio in juridico %}
 
-                        {% if servicio.imagen %}
-                        <div class="redimencionar">
-                            <i><img src="{{servicio.imagen.url}}" alt=""></i>
-                        </div>
-                        {% else %}
-                        <div class="redimencionar">
-                            <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
-                        </div>
-                        {% endif %}
-                        <a href="{% url 'service_detail' servicio.id %}">
-                            <h4>{{servicio.nombre}}</h4>
-                            <p>{{servicio.descripcion}}</p>
-                        </a>
-                        {% endfor %}
+                <div class="card">
+                    {% if servicio.imagen %}
+                    <div class="redimencionar">
+                        <i><img src="{{servicio.imagen.url}}" class="card-img-top mt-2" alt="{{servicio.nombre}}"></i>
+                    </div>
+                    {% else %}
+                    <div class="redimencionar">
+                        <i><img src="{% static 'rapi/img/default_services.png' %}" class="card-img-top mt-2"
+                                alt="{{servicio.nombre}}"></i>
+                    </div>
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title h3"><strong>{{servicio.nombre}} {{servicio.id}}</strong> </h5>
+
+
+                        <p class="card-text">{{servicio.descripcion}}</p>
+
+                        <!-- {{ caracteristica.all|join:', <br> '}} <br> -->
+
+
+
+                        <a href="{% url 'service_detail' servicio.id %}" class="btn btn-primary"> ¡Te llamamos!</a>
+                        <a href="{% url 'service_detail' servicio.id %}" class="btn btn-secondary">Contáctanos</a>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-4">
-                <div class="why-us-content">
-                    <h4>Servicios contables</h4>
-                    <p>Nuestro servicio Contable e Impuestos involucra el diseño de la organización contable con el fin
-                        de ajustar el mantenimiento de registros y presentación de informes a sus necesidades, mientras
-                        se esfuerza por aumentar la eficacia de la función contable en su negocio.</p>
+            </article>
+            {% endfor %}
 
-                    <div class="features wow bounceInUp clearfix">
-                        {% for servicio in contable %}
-                        {% if servicio.imagen %}
-                        <div class="redimencionar">
-                            <i><img src="{{servicio.imagen.url}}" alt=""></i>
-                        </div>
-                        {% else %}
-                        <div class="redimencionar">
-                            <i><img src="{% static 'rapi/img/default_services.png' %}" alt=""></i>
-                        </div>
-                        {% endif %}
-                        <h4>{{servicio.nombre}}</h4>
-                        <p> {{servicio.descripcion}}</p>
-                        {% endfor %}
+        </div>
+
+
+        <h1 class="display-5 text-center text-primary"><strong>Otros Servicios</strong></h1>
+        <div class="row text-center">
+
+            {% for servicio in contable %}
+            <article class="col-12 col-md-4 col-lg-3 mb-3 wow bounceInUp" data-wow-duration="1.4s">
+
+
+                <div class="card">
+                    {% if servicio.imagen %}
+                    <div class="redimencionar">
+                        <i><img src="{{servicio.imagen.url}}" class="card-img-top mt-2" alt="{{servicio.nombre}}"></i>
+                    </div>
+                    {% else %}
+                    <div class="redimencionar">
+                        <i><img src="{% static 'rapi/img/default_services.png' %}" class="card-img-top mt-2"
+                                alt="{{servicio.nombre}}"></i>
+                    </div>
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title h3"><strong>{{servicio.nombre}}</strong> </h5>
+                        <p class="card-text">{{servicio.descripcion|truncatechars:250}}</p>
+                        <a href="{% url 'service_detail' servicio.id %}" class="btn btn-primary">Ver Más</a>
                     </div>
                 </div>
-            </div>
-        </div>
 
-    </div>
-
-    <div class="container">
-        <div class="row counters">
-
-            <div class="col-lg-3 col-6 text-center">
-                <span data-toggle="counter-up">274</span>
-                <p>Clientes</p>
-            </div>
-
-            <div class="col-lg-3 col-6 text-center">
-                <span data-toggle="counter-up">421</span>
-                <p>Proyectos</p>
-            </div>
-
-            <div class="col-lg-3 col-6 text-center">
-                <span data-toggle="counter-up">1,364</span>
-                <p>Horas de Soporte</p>
-            </div>
-
-            <div class="col-lg-3 col-6 text-center">
-                <span data-toggle="counter-up">18</span>
-                <p>Asesores</p>
-            </div>
+            </article>
+            {% endfor %}
 
         </div>
+
 
     </div>
 </section>
